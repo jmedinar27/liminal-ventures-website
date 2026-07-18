@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liminal Ventures</title>
+<meta name="description" content="Anthropological research applied at the moments technology reshapes how people live.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFAFC;
+    --bg-alt: #EEEAF3;
+    --ink: #241E2C;
+    --ink-soft: #5B4F66;
+    --royalty: #604B6E;
+    --spirituality: #857496;
+    --renewal: #CC8A94;
+    --wisdom: #A4AC87;
+    --creativity: #AC9CC0;
+    --creativity-tint: rgba(172, 156, 192, 0.5);
+    --line: rgba(36, 30, 44, 0.12);
+    --max: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--royalty);
+  }
+
+  .eyebrow.c-renewal { color: var(--renewal); }
+  .eyebrow.c-wisdom { color: var(--wisdom); }
+  .eyebrow.c-creativity { color: var(--creativity); }
+  .eyebrow.c-spirituality { color: var(--spirituality); }
+
+  .highlight {
+    background-image: linear-gradient(120deg, transparent 0%, transparent 4%, var(--creativity-tint) 4%, var(--creativity-tint) 96%, transparent 96%);
+    background-repeat: no-repeat;
+    background-size: 100% 42%;
+    background-position: 0 88%;
+    padding: 0 2px;
+  }
+
+  section {
+    padding: 96px 24px;
+  }
+
+  section.alt { background: var(--bg-alt); }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .wrap.wide { max-width: 980px; }
+
+  /* threshold divider — signature element: warm (human) through purple (liminal) to cool sage (understanding) */
+  .threshold {
+    height: 2px;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, var(--renewal), var(--spirituality), var(--wisdom));
+    opacity: 0.9;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero .wrap { position: relative; z-index: 1; }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .blob-1 { width: 420px; height: 420px; background: var(--renewal); opacity: 0.32; top: -120px; right: -80px; }
+  .blob-2 { width: 360px; height: 360px; background: var(--wisdom); opacity: 0.28; bottom: -140px; left: -100px; }
+  .blob-3 { width: 260px; height: 260px; background: var(--creativity); opacity: 0.32; top: 42%; left: 56%; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-blob { animation: drift 20s ease-in-out infinite alternate; }
+    .blob-2 { animation-duration: 24s; }
+    .blob-3 { animation-duration: 28s; }
+  }
+
+  @keyframes drift {
+    from { transform: translate(0, 0); }
+    to { transform: translate(28px, -22px); }
+  }
+
+  .hero .eyebrow { margin-bottom: 22px; }
+
+  .hero h1 {
+    font-size: clamp(34px, 5.2vw, 56px);
+    line-height: 1.14;
+    max-width: 15ch;
+  }
+
+  .hero p.sub {
+    margin-top: 26px;
+    max-width: 52ch;
+    font-size: 19px;
+    color: var(--ink-soft);
+  }
+
+  .hero .contact-link {
+    margin-top: 40px;
+  }
+
+  a.cta {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--royalty);
+    text-decoration: none;
+    border-bottom: 1px solid var(--royalty);
+    padding-bottom: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  a.cta:hover { opacity: 0.6; }
+
+  /* PROBLEM */
+  .problem h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.4;
+    max-width: 26ch;
+  }
+
+  .problem p {
+    margin-top: 24px;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  .problem .callout {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--renewal);
+    margin-top: 32px;
+    max-width: 44ch;
+    line-height: 1.5;
+    padding-left: 20px;
+    border-left: 3px solid var(--creativity);
+  }
+
+  /* WHAT WE DO */
+  .section-head {
+    margin-bottom: 56px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(26px, 3.2vw, 34px);
+    margin-top: 14px;
+    max-width: 20ch;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .card .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--spirituality);
+    letter-spacing: 0.08em;
+  }
+
+  .card h3 {
+    font-size: 20px;
+    margin-top: 12px;
+    font-weight: 600;
+  }
+
+  .card p {
+    margin-top: 12px;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+  }
+
+  /* FIELDWORK ROULETTE */
+  .fieldwork { margin-top: 64px; }
+
+  .fieldwork-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .fieldwork-caption {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin: 0;
+  }
+
+  .roulette {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .roulette-track {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+  }
+
+  .roulette-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    background: linear-gradient(135deg, var(--creativity), var(--spirituality));
+  }
+
+  .roulette-slide.active { opacity: 1; }
+
+  .roulette-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .roulette-slide .placeholder-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .roulette-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(251, 250, 252, 0.85);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .roulette-arrow.prev { left: 14px; }
+  .roulette-arrow.next { right: 14px; }
+  .roulette-arrow:hover { background: var(--bg); }
+
+  .roulette-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+  }
+
+  .roulette-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .roulette-dot.active { background: #fff; }
+
+  /* HOW IT WORKS */
+  .process {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .process::before {
+    content: '';
+    position: absolute;
+    top: 13px;
+    left: 4%;
+    right: 4%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--renewal), var(--spirituality), var(--wisdom));
+  }
+
+  .step {
+    padding-right: 24px;
+  }
+
+  .step .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--royalty);
+    background: var(--bg);
+    display: inline-block;
+    padding-right: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step h3 {
+    font-size: 17px;
+    margin-top: 18px;
+    font-weight: 600;
+  }
+
+  .step p {
+    margin-top: 10px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+
+  /* WHO IT'S FOR */
+  .audience-primary {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    padding: 36px;
+    border-left: 3px solid var(--royalty);
+    margin-bottom: 24px;
+  }
+
+  .audience-primary .eyebrow { margin-bottom: 10px; }
+
+  .audience-primary h3 {
+    font-size: 22px;
+  }
+
+  .audience-primary p {
+    margin-top: 12px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+
+  .audience-secondary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .audience-secondary .item {
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .audience-secondary h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+
+  .audience-secondary p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* VISION */
+  .vision {
+    max-width: 560px;
+  }
+
+  .vision .eyebrow { color: var(--spirituality); }
+
+  .vision p {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-top: 20px;
+  }
+
+  /* CONTACT */
+  .contact h2 {
+    font-size: clamp(26px, 3.4vw, 38px);
+    max-width: 18ch;
+  }
+
+  .contact p {
+    margin-top: 18px;
+    color: var(--ink-soft);
+  }
+
+  .contact .cta {
+    margin-top: 30px;
+    font-size: 15px;
+  }
+
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  a.cta:focus-visible,
+  a[href]:focus-visible {
+    outline: 2px solid var(--royalty);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 760px) {
+    section { padding: 64px 20px; }
+    .cards { grid-template-columns: 1fr; gap: 32px; }
+    .process { grid-template-columns: 1fr; gap: 32px; }
+    .process::before { display: none; }
+    .audience-secondary { grid-template-columns: 1fr; }
+    .roulette-track { aspect-ratio: 4 / 3; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-blob blob-1" aria-hidden="true"></div>
+  <div class="hero-blob blob-2" aria-hidden="true"></div>
+  <div class="hero-blob blob-3" aria-hidden="true"></div>
+  <div class="wrap reveal in">
+    <div class="eyebrow">Liminal Ventures</div>
+    <h1>Anthropological research applied at the moments technology <span class="highlight">reshapes</span> how people live.</h1>
+    <p class="sub">We help development banks, funders, and institutions understand how a technology will actually land on the people it's meant to serve, before, during, and after it arrives.</p>
+    <div class="contact-link">
+      <a class="cta" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<div class="threshold"></div>
+
+<section class="problem">
+  <div class="wrap reveal">
+    <div class="eyebrow c-renewal">The gap</div>
+    <h2>Technology moves faster than our understanding of its human effects.</h2>
+    <p>A digital ID system, a new health platform, an AI-driven public service. Each can reach a population and change daily life long before anyone has really asked how. That gap, between a technology's arrival and its lived effect on people, is the space we work in.</p>
+    <p class="callout">We call it liminal because it is unresolved. Neither the old way of life nor the new one has fully taken hold.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap wide reveal">
+    <div class="section-head">
+      <div class="eyebrow c-creativity">What we do</div>
+      <h2>Insight, made actionable, and carried through.</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Insight discovery</h3>
+        <p>We spend real time with the people a technology is meant to reach, not surveys from a distance. We look at how a system actually changes daily routines, trust, and power.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Actionable recommendations</h3>
+        <p>Field findings become specific guidance an institution can use before or during rollout: what to adjust, what to watch for, who is at risk of being left out.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Implementation</h3>
+        <p>When a project needs more than a report, we bring in the right specialists, anthropologists and technologists, to help see the changes through.</p>
+      </div>
+    </div>
+
+    <div class="fieldwork">
+      <div class="fieldwork-head">
+        <span class="eyebrow c-wisdom">Fieldwork</span>
+        <p class="fieldwork-caption">Time on the ground with the people we work alongside.</p>
+      </div>
+      <div class="roulette" id="roulette">
+        <!--
+          To add real photos, edit the `slides` array in the script at the
+          bottom of this file. Replace src: null with the image path, e.g.
+          { src: "images/fieldwork-01.jpg", alt: "Interview in the field" }
+          Leaving src as null keeps this frame showing a placeholder.
+        -->
+        <div class="roulette-track" id="roulette-track"></div>
+        <button class="roulette-arrow prev" id="roulette-prev" aria-label="Previous photo">&#8592;</button>
+        <button class="roulette-arrow next" id="roulette-next" aria-label="Next photo">&#8594;</button>
+        <div class="roulette-dots" id="roulette-dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap wide reveal">
+    <div class="section-head">
+      <div class="eyebrow c-wisdom">How it works</div>
+      <h2>A method, in four steps.</h2>
+    </div>
+    <div class="process">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Embed</h3>
+        <p>We spend time with the population a technology will affect, long enough to see real patterns, not a snapshot.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Understand</h3>
+        <p>We surface how the technology actually changes daily life, the effects an institution didn't anticipate, positive and negative.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Translate</h3>
+        <p>Findings become recommendations specific enough to change a rollout plan, not general observations.</p>
+      </div>
+      <div class="step">
+        <span class="num">04</span>
+        <h3>Implement</h3>
+        <p>Where needed, we bring in the right people to carry the changes through, not just hand over a report.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap wide reveal">
+    <div class="section-head">
+      <div class="eyebrow c-spirituality">Who it's for</div>
+      <h2>Institutions with real human stakes in a rollout.</h2>
+    </div>
+    <div class="audience-primary">
+      <div class="eyebrow">Primary</div>
+      <h3>Development banks and funders</h3>
+      <p>Conducting feasibility studies, safeguards assessments, or social due diligence before financing a project that will touch people's everyday lives, a digital ID rollout, a health platform, a large infrastructure project.</p>
+    </div>
+    <div class="audience-secondary">
+      <div class="item">
+        <h4>Governments</h4>
+        <p>Preparing to roll out a digital ID system, a health platform, or another service that will reach the population at scale.</p>
+      </div>
+      <div class="item">
+        <h4>Corporations</h4>
+        <p>Assessing how a new product might affect a vulnerable population before entering a new market.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vision">
+  <div class="wrap reveal">
+    <div class="eyebrow c-spirituality">Who we are</div>
+    <p>Liminal Ventures is a team of anthropologists and technologists working together to gather insight and guide technology implementation responsibly. We want to meet people where they are, not where we want them to be.</p>
+  </div>
+</section>
+
+<div class="threshold"></div>
+
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Working on a rollout with real human stakes?</h2>
+    <p>Tell us about the project, the population, and the timeline, and we'll go from there.</p>
+    <a class="cta" href="mailto:hello@liminal.ventures">hello@liminal.ventures</a>
+  </div>
+</section>
+
+<footer>Liminal Ventures &middot; 2026</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // FIELDWORK ROULETTE
+  // Add real photos by editing this array: fill in `src` with the image
+  // path (e.g. "images/fieldwork-01.jpg") and a short `alt` description.
+  // Leave src as null to keep showing a placeholder frame.
+  const slides = [
+    { src: null, alt: 'Fieldwork photo 1' },
+    { src: null, alt: 'Fieldwork photo 2' },
+    { src: null, alt: 'Fieldwork photo 3' },
+    { src: null, alt: 'Fieldwork photo 4' }
+  ];
+
+  const track = document.getElementById('roulette-track');
+  const dotsWrap = document.getElementById('roulette-dots');
+  let current = 0;
+  let rouletteTimer;
+
+  function buildRoulette() {
+    slides.forEach((slide, i) => {
+      const el = document.createElement('div');
+      el.className = 'roulette-slide' + (i === 0 ? ' active' : '');
+      if (slide.src) {
+        const img = document.createElement('img');
+        img.src = slide.src;
+        img.alt = slide.alt || '';
+        el.appendChild(img);
+      } else {
+        const label = document.createElement('div');
+        label.className = 'placeholder-label';
+        label.textContent = slide.alt || 'Add fieldwork photo';
+        el.appendChild(label);
+      }
+      track.appendChild(el);
+
+      const dot = document.createElement('button');
+      dot.className = 'roulette-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+  }
+
+  function goTo(index) {
+    const allSlides = track.querySelectorAll('.roulette-slide');
+    const allDots = dotsWrap.querySelectorAll('.roulette-dot');
+    allSlides[current].classList.remove('active');
+    allDots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    allSlides[current].classList.add('active');
+    allDots[current].classList.add('active');
+  }
+
+  function startAutoplay() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    rouletteTimer = setInterval(() => goTo(current + 1), 4500);
+  }
+
+  buildRoulette();
+  startAutoplay();
+
+  document.getElementById('roulette-prev').addEventListener('click', () => {
+    goTo(current - 1);
+    clearInterval(rouletteTimer);
+    startAutoplay();
+  });
+  document.getElementById('roulette-next').addEventListener('click', () => {
+    goTo(current + 1);
+    clearInterval(rouletteTimer);
+    startAutoplay();
+  });
+
+  const rouletteEl = document.getElementById('roulette');
+  rouletteEl.addEventListener('mouseenter', () => clearInterval(rouletteTimer));
+  rouletteEl.addEventListener('mouseleave', () => startAutoplay());
+</script>
+
+</body>
+</html>
