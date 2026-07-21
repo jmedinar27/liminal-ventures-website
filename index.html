@@ -20,6 +20,9 @@
     --wisdom: #A4AC87;
     --creativity: #AC9CC0;
     --creativity-tint: rgba(172, 156, 192, 0.5);
+    --renewal-tint: rgba(204, 138, 148, 0.28);
+    --wisdom-tint: rgba(164, 172, 135, 0.28);
+    --creativity-tint2: rgba(172, 156, 192, 0.28);
     --line: rgba(36, 30, 44, 0.12);
     --max: 780px;
   }
@@ -36,6 +39,11 @@
     font-size: 17px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+  }
+
+  .dotgrid {
+    background-image: radial-gradient(var(--line) 1.4px, transparent 1.4px);
+    background-size: 22px 22px;
   }
 
   h1, h2, h3 {
@@ -67,7 +75,7 @@
   }
 
   section {
-    padding: 96px 24px;
+    padding: 72px 24px;
   }
 
   section.alt { background: var(--bg-alt); }
@@ -81,12 +89,22 @@
 
   /* threshold divider — signature element: warm (human) through purple (liminal) to cool sage (understanding) */
   .threshold {
-    height: 2px;
+    height: 3px;
     width: 100%;
     max-width: 980px;
     margin: 0 auto;
-    background: linear-gradient(90deg, var(--renewal), var(--spirituality), var(--wisdom));
-    opacity: 0.9;
+    background: linear-gradient(90deg, var(--renewal), var(--spirituality), var(--wisdom), var(--renewal));
+    background-size: 200% 100%;
+    opacity: 0.95;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .threshold { animation: shift 8s linear infinite; }
+  }
+
+  @keyframes shift {
+    from { background-position: 0% 0; }
+    to { background-position: 200% 0; }
   }
 
   /* HERO */
@@ -110,9 +128,19 @@
     pointer-events: none;
   }
 
-  .blob-1 { width: 420px; height: 420px; background: var(--renewal); opacity: 0.32; top: -120px; right: -80px; }
-  .blob-2 { width: 360px; height: 360px; background: var(--wisdom); opacity: 0.28; bottom: -140px; left: -100px; }
-  .blob-3 { width: 260px; height: 260px; background: var(--creativity); opacity: 0.32; top: 42%; left: 56%; }
+  .blob-1 { width: 480px; height: 480px; background: var(--renewal); opacity: 0.4; top: -140px; right: -100px; }
+  .blob-2 { width: 420px; height: 420px; background: var(--wisdom); opacity: 0.34; bottom: -160px; left: -120px; }
+  .blob-3 { width: 300px; height: 300px; background: var(--creativity); opacity: 0.4; top: 42%; left: 56%; }
+
+  .arch {
+    position: absolute;
+    right: 4%;
+    bottom: 0;
+    width: min(46vw, 480px);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
 
   @media (prefers-reduced-motion: no-preference) {
     .hero-blob { animation: drift 20s ease-in-out infinite alternate; }
@@ -198,19 +226,44 @@
   .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 24px;
   }
+
+  .card {
+    padding: 28px 24px;
+    border-radius: 14px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(36,30,44,0.12); }
+
+  .card:nth-child(1) { background: var(--renewal-tint); }
+  .card:nth-child(2) { background: var(--creativity-tint2); }
+  .card:nth-child(3) { background: var(--wisdom-tint); }
+
+  .cards.reveal .card { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .cards.reveal.in .card { opacity: 1; transform: translateY(0); }
+  .cards.reveal.in .card:nth-child(1) { transition-delay: 0s; }
+  .cards.reveal.in .card:nth-child(2) { transition-delay: 0.12s; }
+  .cards.reveal.in .card:nth-child(3) { transition-delay: 0.24s; }
 
   .card .num {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 13px;
-    color: var(--spirituality);
+    color: var(--ink);
     letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
   }
 
   .card h3 {
     font-size: 20px;
-    margin-top: 12px;
+    margin-top: 14px;
     font-weight: 600;
   }
 
@@ -319,6 +372,14 @@
   .roulette-dot.active { background: #fff; }
 
   /* HOW IT WORKS */
+  section.dark {
+    background: var(--royalty);
+    color: #F1ECF5;
+  }
+
+  section.dark .eyebrow { color: var(--creativity); }
+  section.dark h2 { color: #fff; }
+
   .process {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -333,18 +394,27 @@
     left: 4%;
     right: 4%;
     height: 1px;
-    background: linear-gradient(90deg, var(--renewal), var(--spirituality), var(--wisdom));
+    background: linear-gradient(90deg, var(--renewal), var(--creativity), var(--wisdom));
   }
 
   .step {
     padding-right: 24px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
+
+  .process.in .step { opacity: 1; transform: translateY(0); }
+  .process.in .step:nth-child(1) { transition-delay: 0s; }
+  .process.in .step:nth-child(2) { transition-delay: 0.12s; }
+  .process.in .step:nth-child(3) { transition-delay: 0.24s; }
+  .process.in .step:nth-child(4) { transition-delay: 0.36s; }
 
   .step .num {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 13px;
-    color: var(--royalty);
-    background: var(--bg);
+    color: var(--creativity);
+    background: var(--royalty);
     display: inline-block;
     padding-right: 10px;
     position: relative;
@@ -355,32 +425,34 @@
     font-size: 17px;
     margin-top: 18px;
     font-weight: 600;
+    color: #fff;
   }
 
   .step p {
     margin-top: 10px;
     font-size: 14.5px;
-    color: var(--ink-soft);
+    color: #D8CEE0;
   }
 
   /* WHO IT'S FOR */
   .audience-primary {
-    border: 1px solid var(--line);
-    background: var(--bg);
-    padding: 36px;
-    border-left: 3px solid var(--royalty);
+    background: var(--royalty);
+    color: #fff;
+    padding: 40px;
+    border-radius: 14px;
     margin-bottom: 24px;
   }
 
-  .audience-primary .eyebrow { margin-bottom: 10px; }
+  .audience-primary .eyebrow { margin-bottom: 10px; color: var(--creativity); }
 
   .audience-primary h3 {
     font-size: 22px;
+    color: #fff;
   }
 
   .audience-primary p {
     margin-top: 12px;
-    color: var(--ink-soft);
+    color: #E2D8E8;
     max-width: 56ch;
   }
 
@@ -485,9 +557,14 @@
 <body>
 
 <section class="hero">
-  <div class="hero-blob blob-1" aria-hidden="true"></div>
-  <div class="hero-blob blob-2" aria-hidden="true"></div>
-  <div class="hero-blob blob-3" aria-hidden="true"></div>
+  <div class="hero-blob blob-1" id="blob-1" aria-hidden="true"></div>
+  <div class="hero-blob blob-2" id="blob-2" aria-hidden="true"></div>
+  <div class="hero-blob blob-3" id="blob-3" aria-hidden="true"></div>
+  <svg class="arch" viewBox="0 0 300 300" aria-hidden="true">
+    <circle cx="150" cy="300" r="130" fill="none" stroke="#604B6E" stroke-width="2"/>
+    <circle cx="150" cy="300" r="100" fill="none" stroke="#CC8A94" stroke-width="2"/>
+    <circle cx="150" cy="300" r="70" fill="none" stroke="#A4AC87" stroke-width="2"/>
+  </svg>
   <div class="wrap reveal in">
     <div class="eyebrow">Liminal Ventures</div>
     <h1>Anthropological research applied at the moments technology <span class="highlight">reshapes</span> how people live.</h1>
@@ -515,7 +592,7 @@
       <div class="eyebrow c-creativity">What we do</div>
       <h2>Insight, made actionable, and carried through.</h2>
     </div>
-    <div class="cards">
+    <div class="cards reveal">
       <div class="card">
         <div class="num">01</div>
         <h3>Insight discovery</h3>
@@ -529,7 +606,7 @@
       <div class="card">
         <div class="num">03</div>
         <h3>Implementation</h3>
-        <p>When a project needs more than a report, we bring in the right specialists, anthropologists and technologists, to help see the changes through.</p>
+        <p>When a project needs more than analysis, we bring in the right specialists, anthropologists and technologists, to carry the changes through on the ground.</p>
       </div>
     </div>
 
@@ -554,13 +631,13 @@
   </div>
 </section>
 
-<section>
+<section class="dark">
   <div class="wrap wide reveal">
     <div class="section-head">
-      <div class="eyebrow c-wisdom">How it works</div>
+      <div class="eyebrow">How it works</div>
       <h2>A method, in four steps.</h2>
     </div>
-    <div class="process">
+    <div class="process reveal">
       <div class="step">
         <span class="num">01</span>
         <h3>Embed</h3>
@@ -579,7 +656,7 @@
       <div class="step">
         <span class="num">04</span>
         <h3>Implement</h3>
-        <p>Where needed, we bring in the right people to carry the changes through, not just hand over a report.</p>
+        <p>Where needed, we bring in the right people to carry the changes through ourselves, not hand off a document and walk away.</p>
       </div>
     </div>
   </div>
@@ -640,6 +717,20 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // Gentle parallax on the hero blobs as the page scrolls
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    const blob1 = document.getElementById('blob-1');
+    const blob2 = document.getElementById('blob-2');
+    const blob3 = document.getElementById('blob-3');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (blob1) blob1.style.transform = `translateY(${y * 0.12}px)`;
+      if (blob2) blob2.style.transform = `translateY(${y * -0.08}px)`;
+      if (blob3) blob3.style.transform = `translateY(${y * 0.16}px)`;
+    }, { passive: true });
+  }
 
   // FIELDWORK ROULETTE
   // Add real photos by editing this array: fill in `src` with the image
